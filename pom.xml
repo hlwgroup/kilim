@@ -18,16 +18,16 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-          <groupId>org.apache.maven.plugin-tools</groupId>
-          <artifactId>maven-plugin-annotations</artifactId>
-          <version>3.5.1</version>
-          <scope>provided</scope>
+            <groupId>org.apache.maven.plugin-tools</groupId>
+            <artifactId>maven-plugin-annotations</artifactId>
+            <version>3.5.1</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
-          <groupId>org.apache.maven</groupId>
-          <artifactId>maven-core</artifactId>
-          <version>3.5.2</version>
-          <scope>provided</scope>
+            <groupId>org.apache.maven</groupId>
+            <artifactId>maven-core</artifactId>
+            <version>3.5.2</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.eclipse.jetty</groupId>
@@ -36,6 +36,7 @@
             <scope>provided</scope>
         </dependency>
     </dependencies>
+
     <licenses>
         <license>
             <name>MIT License</name>
@@ -53,7 +54,7 @@
         <developerConnection>scm:git:git@github.com:nqzero/kilim.git</developerConnection>
         <url>git@github.com:nqzero/kilim.git</url>
         <tag>master</tag>
-    </scm>    
+    </scm>
     <name>kilim</name>
     <description>Coroutines, continuations, fibers, actors and message passing for the JVM</description>
     <url>https://github.com/nqzero/kilim</url>
@@ -77,20 +78,42 @@
         </resources>
         <plugins>
             <plugin>
-		<groupId>org.apache.maven.plugins</groupId>
-		<artifactId>maven-dependency-plugin</artifactId>
-		<version>3.0.2</version>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>3.0.2</version>
                 <configuration>
                     <outputDirectory>${basedir}/libs</outputDirectory>
                     <silent>true</silent>
                 </configuration>
-		<executions>
+                <executions>
                     <execution>
-			<id>copy-dependencies</id>
-			<phase>initialize</phase>
-			<goals> <goal>copy-dependencies</goal> </goals>
+                        <id>copy-dependencies</id>
+                        <phase>initialize</phase>
+                        <goals> <goal>copy-dependencies</goal> </goals>
                     </execution>
-		</executions>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>3.1.1</version>
+
+                <configuration>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                </configuration>
+
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+
             </plugin>
             <!-- tests are run manually using `ant testjit test` -->
             <plugin>
