@@ -9,7 +9,7 @@ import org.objectweb.asm.Opcodes;
 
 public interface Constants extends Opcodes {
     
-    String KILIM_VERSION    = "1.0";
+    String KILIM_VERSION    = "2.0.3";
     int    KILIM_ASM        = ASM7;
     
     // Type descriptors
